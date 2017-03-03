@@ -188,8 +188,13 @@
                     strongself.cutDoneBlock(asset);
                 }
                 
-                [strongself cancelOrDoneCutAction];
-                [label removeFromSuperview];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [label removeFromSuperview];
+                    [strongself cancelOrDoneCutAction];
+                    
+                });
+                
             } error:^(NSString *error) {
                 NSLog(@"错误%@",error);
             }];
