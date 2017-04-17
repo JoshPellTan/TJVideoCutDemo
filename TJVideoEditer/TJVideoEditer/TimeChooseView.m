@@ -259,8 +259,9 @@ typedef enum {
     if(panGR.state == UIGestureRecognizerStateChanged)
     {
         [panGR setTranslation:CGPointZero inView:self.superview];
+        
     }
-    //计算裁剪时间
+    //实时计算裁剪时间
     [self calculateForTimeNodes];
     
     if (panGR.state == UIGestureRecognizerStateEnded) {
@@ -271,7 +272,7 @@ typedef enum {
 }
 
 
-//计算开始时间点
+//计算开始结束时间点
 -(void)calculateForTimeNodes{
     
     CGPoint offset = _scrollView.contentOffset;
@@ -280,6 +281,7 @@ typedef enum {
     _startTime = (offset.x+self.startView.frame.origin.x)*KtotalTimeForSelf*1.0f/self.bounds.size.width;
     _endTime = (offset.x + self.endView.frame.origin.x + KendTimeButtonWidth) * KtotalTimeForSelf * 1.0f/self.bounds.size.width;
     
+    //预览时间点
     CGFloat imageTime = _startTime;
     if (_chooseType == imageTypeEnd) {
         imageTime = _endTime;
