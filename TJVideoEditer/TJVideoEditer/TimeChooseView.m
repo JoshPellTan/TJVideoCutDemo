@@ -303,13 +303,19 @@ typedef enum {
     
 }
 
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    
     if (self.cutWhenDragEnd) {
         self.cutWhenDragEnd();
     }
-    
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+
+    if (self.cutWhenDragEnd) {
+        self.cutWhenDragEnd();
+    }
+
 }
 
 
